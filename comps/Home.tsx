@@ -11,6 +11,13 @@ interface HomeProps {
 }
 
 const Home = ({ products, bannerData }: HomeProps) => {
+  const [sortOrder, setSortOrder] = useState("");
+  
+  const sortedProducts = sortOrder 
+    ? [...products].sort((a, b) => 
+        sortOrder === "low" ? a.price - b.price : b.price - a.price
+      )
+    : products;
 
   return (
     <main>
@@ -24,17 +31,26 @@ const Home = ({ products, bannerData }: HomeProps) => {
         >
           Best Selling Headphones
         </h1>
-        {/* <p className=" text-base text-secondary">Best in the Market</p> */}
+        
+        <select 
+          value={sortOrder} 
+          onChange={(e) => setSortOrder(e.target.value)}
+          className="mt-4 px-4 py-2 border rounded-lg bg-white text-secondary font-medium"
+        >
+          <option value="">Sort by Price</option>
+          <option value="low">Low to High</option>
+          <option value="high">High to Low</option>
+        </select>
       </section>
 
       {/* === SHOW PRODUCTS  */}
       <section
-        className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4
+        className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3
        lg:mx-20 overflow-hidden
       "
       >
         {/* === MAP PRODUCTS  */}
-        {products?.map((products: ProductsTypes) => {
+        {sortedProducts?.map((products: ProductsTypes) => {
           return <Products key={products._id} products={products} />;
         })}
       </section>

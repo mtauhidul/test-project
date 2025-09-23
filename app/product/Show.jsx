@@ -14,6 +14,10 @@ const Show = ({ product, products }) => {
 
   const [zoom, setZoom] = useState(false);
 
+  const formatToYen = (price) => {
+    return `¥${price.toLocaleString()}`;
+  };
+
   const imgMouseOver = (e) => {
     const img = document.getElementById("img");
     const x = e.clientX;
@@ -101,7 +105,7 @@ const Show = ({ product, products }) => {
               <div className=" text-secondary font-medium ">DETAILS:</div>
               <p className="w-2/3 text-lightGray"> {product.details}</p>
 
-              <div className=" my-4 text-2xl font-bold"> ${product.price} </div>
+              <div className=" my-4 text-2xl font-bold"> {formatToYen(product.price)} </div>
 
               {/* ==== QUANTITY SHOW  */}
               <div className="flex">
@@ -144,12 +148,13 @@ const Show = ({ product, products }) => {
                 Add to Cart
               </button>
 
-              <div
-                className=" text-center hover:scale-105 transition shadow-md cursor-pointer
-                 bg-primary text-xl px-8 py-2  text-highLight ring-1 ring-primary"
+              <button
+                className=" flex justify-center items-center mb-4 
+                sm:mb-0 hover:scale-105 transition shadow-md
+                 bg-primary text-xl px-8 py-2 text-white ring-1 ring-primary w-full sm:w-auto"
               >
                 Buy Now
-              </div>
+              </button>
             </div>
           </section>
         </div>

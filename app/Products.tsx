@@ -20,6 +20,10 @@ const Products = ({ products, gap }: ProductsProps) => {
 
   const imageProps = useNextSanityImage(client, products.image[0]);
 
+  const formatToYen = (price: number) => {
+    return `¥${price.toLocaleString()}`;
+  };
+
   useEffect(() => {
     setIsloaded(true);
   }, []);
@@ -68,9 +72,9 @@ const Products = ({ products, gap }: ProductsProps) => {
           <p> {products.name} </p>
           <div className=" flex gap-3">
             <span className=" text-sm text-lightGray line-through ">
-              ${products.oldPrice}
+              {formatToYen(products.oldPrice)}
             </span>
-            <b className=" text-zinc-900 "> ${products.price} </b>
+            <b className=" text-zinc-900 "> {formatToYen(products.price)} </b>
           </div>
         </nav>
 

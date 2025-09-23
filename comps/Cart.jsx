@@ -21,6 +21,10 @@ const Cart = () => {
     onRemove,
   } = useContext(UC);
 
+  const formatToYen = (price) => {
+    return `¥${price.toLocaleString()}`;
+  };
+
   const checkOut = async () => {
     const stripe = await getStripe();
 
@@ -103,7 +107,7 @@ const Cart = () => {
                       {item?.name}
                     </h4>
                     <h5 className=" text-xl text-secondary font-bold">
-                      ${item?.price}
+                      {formatToYen(item?.price)}
                     </h5>
                   </section>
 
@@ -153,7 +157,7 @@ const Cart = () => {
             <div className="flex flex-col items-center my-10 w-full">
               <section className=" w-full px-10 flex items-center justify-between">
                 <h2 className=" text-2xl font-semibold">Subtotal:</h2>
-                <span className=" text-xl font-bold"> ${totalPrice}</span>
+                <span className=" text-xl font-bold"> {formatToYen(totalPrice)}</span>
               </section>
 
               <button
