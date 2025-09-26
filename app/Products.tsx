@@ -21,7 +21,8 @@ const Products = ({ products, gap }: ProductsProps) => {
   const imageProps = useNextSanityImage(client, products.image[0]);
 
   const formatToYen = (price: number) => {
-    return `¥${price.toLocaleString()}`;
+    const yenAmount = Math.round(price * 150);
+    return `¥${yenAmount.toLocaleString()}`;
   };
 
   useEffect(() => {

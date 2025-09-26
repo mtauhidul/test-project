@@ -15,7 +15,8 @@ const Show = ({ product, products }) => {
   const [zoom, setZoom] = useState(false);
 
   const formatToYen = (price) => {
-    return `¥${price.toLocaleString()}`;
+    const yenAmount = Math.round(price * 150);
+    return `¥${yenAmount.toLocaleString()}`;
   };
 
   const imgMouseOver = (e) => {

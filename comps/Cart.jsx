@@ -22,7 +22,8 @@ const Cart = () => {
   } = useContext(UC);
 
   const formatToYen = (price) => {
-    return `¥${price.toLocaleString()}`;
+    const yenAmount = Math.round(price * 150);
+    return `¥${yenAmount.toLocaleString()}`;
   };
 
   const checkOut = async () => {
